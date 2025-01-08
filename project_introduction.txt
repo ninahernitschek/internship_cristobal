@@ -1,0 +1,147 @@
+
+topic: Variability detection and classification in astronomical datasets on the example of TESS
+ 
+
+outline:
+
+Nowadays large-scale astronomical surveys enable us to see the universe in a much more detailed, and in particular different way than before.
+In the era of such large-scale surveys, methods to handle investigate these  data, and especially to classify sources, become more and more important.
+This project uses light curve data from the NASA Transiting Exoplanet Survey Satellite
+(TESS), where each star is observed for 27 days with a high cadence of 30 minutes.
+The project entails the development and testing of reliable and fast machine-learning methods in order to identify and classify rare types of variable stars and
+exoplanet systems in the Milky Way. 
+
+
+background:
+
+Most stars, like the sun, have approximately constant brightness, but approximately 1 - 5 % of 
+all stars show a significant amount of variability in their intensity.
+Variable stars are important tracers of the Milky Way's evolution.
+Stars such as RR Lyrae allow to precisely estimate distances in the old Milky
+Way components, providing important information to answer questions regarding
+formation and evolution of galaxies. Other stars such as spotted stars allow to
+gain insight into magnetic activity of stars. Rare supernova events allow to
+calculate distances at cosmological scales. Historically, variable stars have
+been identified by manually sorting images or making brightness-over-time (light
+curve) plots based on small, targeted surveys. Modern all-sky astronomical
+surveys allow for evaluating huge amounts of data. Machine-learning tools are
+extremely important to cope with such an amount of data, as well as to allow for
+a more precise evaluation of the data than done with classical algorithms.
+Approaches like that were already carried out and proven as very successful for some
+astronomical surveys such as Pan-STARRS1, which provided relatively sparse data. This research project aims to test the
+effectivity of using machine learning to classifying variable stars for TESS, whose
+data quality should allow for a very detailed classification.
+
+In your project, you will use data from the TESS satellite to investigate how well we can distinguish between different kind of variable stars 
+based on those data.
+
+
+learning objectives:
+
+* development of code to analyze astronomical time-series data with Python
+* development of machine learning code to analyze astronomical data with Python
+* development of code to visualize astronomical data
+--> you will learn and apply this during your project
+
+* understanding of general topics and methods in astronomical research
+--> you will learn about this while reading astronomical research papers and discussing them with me
+
+
+Programming language: Python 3.x.
+
+
+
+github:
+
+data and code I will provide are always on github:
+https://github.com/ninahernitschek/internship_cristobal
+On the right in this repository, you find a link "Releases". Click it and download "data". Unzip the downloaded data in your own folder.
+This data contains light curves; more on this later.
+For your own code, please create a github repository and share it with me.
+
+
+
+
+
+
+A more in-detail overview
+
+
+
+
+1. A short overview of your project
+
+You will be processing NASA Transiting Exoplanet Survey Satellite
+(TESS) datasets to identify and classify rare types of variable stars and
+exoplanet systems in the Milky Way. The plan is to develop and test reliable
+and fast classification methods by using Machine Learning techniques.
+
+The reason why this is important:
+Most stars, like the sun, have approximately constant brightness, but some
+stars, called variable stars, undergo characteristic changes in their
+brightness. Variable stars are important tracers of the Milky Way's evolution.
+Stars such as RR Lyrae allow to precisely estimate distances in the old Milky
+Way components, providing important information to answer questions regarding
+formation and evolution of galaxies. Other stars such as spotted stars allow to
+gain insight into magnetic activity of stars. Rare supernova events allow to
+calculate distances at cosmological scales. Historically, variable stars have
+been identified by manually sorting images or making brightness-over-time (light
+curve) plots based on small, targeted surveys. Modern all-sky astronomical
+surveys allow for evaluating huge amounts of data. Machine-learning tools are
+extremely important to cope with such an amount of data, as well as to allow for
+a more precise evaluation of the data than done with classical algorithms.
+Approaches like that were already carried out and proven as very successful for some
+astronomical surveys such as Pan-STARRS1. This research project aims to test the
+effectivity of using machine learning to classifying variable stars for TESS, whose
+data quality should allow for a very detailed classification.
+
+
+2. The TESS Survey 
+The TESS survey observes stars for 27 days each (actually, 13 days and then there is a "transmission gap" of roughly a day when the data are downloaded from the 
+satellite, and then another 13 days).
+
+This is to give you some idea on how typical data look like; for your project, you will get the data as tables with columns time, magnitude, magnitude_error. 
+In case you are not familiar with those plots: On the x axis is "time", on the y axis is "magnitude", which is a measure for brightness (intensity). The magnitude 
+is always plotted on a inverted y axis - you will recognize that smaller numbers are to the top, larger to the bottom. This is because smaller magnitude means brighter, 
+larger amplitude means fainter. Here is more on this: https://en.wikipedia.org/wiki/Magnitude_(astronomy)
+You will find more on the TESS survey itself on that website: https://tess.mit.edu/observations/
+On this website, you will see that TESS is observing the sky in many so-called "sectors" we are currently working with data from sector01.
+TESS was designed to observe stars which might have exoplanets. However, the very high temporal resolution - one observation taken each 30 minutes - is also 
+extremely helpful for doing science with variable stars. In comparison, most surveys observe each star only once each 24 hours, or even less.
+
+3. Variable Stars
+About 1 - 5 % of all stars show a significant amount of variability in their intensity. With surveys such as TESS, compared to other surveys, 
+it is possible to detect even slight variability.
+When you downloaded the plots in the directory above, you saw there are sub-folders named such as "CEP","RRAB" and so on.
+These abbreviations for the variability types come from here:
+https://www.aavso.org/vsx/index.php?view=about.vartypes
+You see there is a huge amount of different types of variable stars. You will spot similarities and differences when you take a look at a few of those plots.
+
+
+Here is a good short introduction why astronomers are interested in variable stars:
+https://www.aavso.org/variables-what-are-they-why-observe-them
+
+Among variable stars, pulsating variables (of the type "RR Lyrae" and "Cepheids") play a special role: Accurate measurements of their periods allow for calculating the distance.
+In case this is new to you, I suggest to look this up - e.g. from this website:
+https://courses.lumenlearning.com/astronomy/chapter/variable-stars-one-key-to-cosmic-distances/
+
+
+- how to get started:
+Once you downloaded the data from github, open the folder _TESS_lightcurves_median_after_detrended. You will find several subfolders. They correspond to the variable star types 
+found here: https://www.aavso.org/vsx/index.php?view=about.vartypes
+Each of the *.lc files is one light curve.
+
+The files have the following properties:
+columns: 'JD', 'mag_clean', 'mag_after_cbv', 'err' 
+These are detrended lightcurves, calculated from the raw light curves.
+The columns 'mag_clean' and 'mag_after_cbv' represent two steps of outlier cleaning. we use 'mag_clean'.
+NaN values are *********
+
+Your first task (see Jupyter notebooks) will be to plot the individual light curves as a plot similar to the one I have attached. I recommend using Python matplotlib for this.
+
+My suggestion here is that you first try this on your own. Based on your plots and your code, I will help you with improving your Python skills.
+If you have any problems or questions while doing so, just send me an e-mail and I will help you.
+
+
+
+ 
